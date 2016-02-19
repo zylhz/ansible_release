@@ -1,0 +1,191 @@
+<div ng-controller='search_branch_ctrl'>  
+    <label class="checkbox">
+    </label>
+    <accordion close-others="oneAtATime">
+        <accordion-group ng-repeat="i in items_list" is-open="status.isItemOpen[$index]" ng-init="search_branch(i)">
+            <accordion-heading> 
+            <h5><span class="handpointer">项目名： ((i.pro_name))  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <span ng-if="!db_msg[i.pro_name]"> 数据库名: ((db_name[i.pro_name])) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 数据库链接host: ((db_host[i.pro_name]))</span> <span ng-if="db_msg[i.pro_name]"> ((db_msg[i.pro_name]))</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击我打开进行数据库相关操作</span><i class="pull-right glyphicon handpointer" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></h5>
+            </accordion-heading>
+            <div class="list-group" ng-controller="database_code_ctrl">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>数据库文件列表: </label> 
+                        <!--
+                            <input class="form-control" ng-model="query" >
+                            <button class="btn btn-primary" ng-click="change_branch(query)">切换</button> 
+                        -->
+                        <div class="alert alert-success col-md-12 column" role="alert">
+                            <div class="col-md-3 column">
+                                <span class="small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    文件名 </span>
+                            </div>
+                            <div class="col-md-2 column">
+                                <span class="small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    文件类型 </span>
+                            </div>
+                            <div class="col-md-3 column">
+                                <span class="small">&nbsp;&nbsp;    文件大小 </span>
+                            </div>
+                            <div class="col-md-2 column">
+                                <span class="small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    文件创建时间 </span>
+                            </div>
+                            <div class="col-md-2 column">
+                                <span class="small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    文件操作</span>
+                            </div>
+                        </div>
+
+
+
+
+                        <div ngf-drop ngf-select ng-model="sql_file" ng-bind="dir=i.pro_ansi_release_yml;a='sql文件拖曳至此处'" class="drop-box1" 
+                                ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
+                                    accept="image/*,application/pdf">图片文件拖曳至此处</div>
+                        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+
+
+                        <div class="col-md-12 column" ng-init="list_dir(i.pro_ansi_release_yml)">
+                            <div class="col-md-12 column" ng-repeat="j in up_info[i.pro_ansi_release_yml]">
+
+
+                                    <div class="modal fade" id="Modeldelete((j.cut_name))" tabindex="-1" role="dialog" aria-labelledby="ModalLabeldelete" aria-hidden="true">
+                                         <div class="modal-dialog modal-dialog modal-lg">
+                                             <div class="modal-content">
+                                                 <div class="modal-header">
+                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                     <h4 class="modal-title" id="ModalLabeldelete">提示</h4>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                     <h4 class="col-md-6">是否要删除文本 ((short_name))?</h4>
+                                                    <br/>
+                                                 </div>
+
+                                                 <div class="modal-footer">
+                                                    <br/>
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="delete_file(i.pro_ansi_release_yml, now_name)">确认删除</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                                                 </div>
+                                             </div><!-- /.modal-content -->
+                                         </div><!-- /.modal-dialog -->
+                                     </div><!-- /.modal -->
+
+                                    
+                                    <!-- Modal -->
+                                <div class="modal fade" id="Modelreadtext((j.cut_name))" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog modal-lg">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">提示</h4>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12">
+                                                        <label class="col-md-6 control-label">文本名称:((short_name))</label>
+                                                    </div>
+                                                    <br/>
+                                                    <br/>
+                                                    <label class="col-md-12 control-label">文本信息:</label>
+                                                    <div class="col-md-12">
+                                                        <textarea class="form-control" rows="25" style="width:800px">((file_text.text))</textarea>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <br/>
+                                                <div class='col-md-5'>
+                                                    <div class='col-md-5'>
+                                                        <label class="control-label">读取行数:</label>
+                                                    </div>
+                                                    <div class='col-md-7'>
+                                                        <input type="text" class="form-control" placeholder="读取的行数" ng-model="num" />
+                                                    </div>
+                                                </div>
+                                                <div class='col-md-7'>
+                                                    <button type="button" class="btn btn-primary" ng-click="read_before(num)">读取前((num))行</button>
+                                                    <button type="button" class="btn btn-default" ng-click="read_after(num)">读取后((num))行</button>
+                                                    <button type="button" class="btn btn-success" ng-click="read_before('all')">读取全部</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="read_before(num)">取消</button>
+                                                </div>
+                                            </div>
+
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+
+                                    
+
+
+
+
+                                <div class="col-md-3 column">
+                                    <h5 class="handpointer" ng-click="now_set_name(j.name,j.short_name)"><span class="glyphicon glyphicon-file" aria-hidden="true" data-toggle="modal" data-target="#Modelreadtext((j.cut_name))" ng-if="j.is_file">&nbsp;((j.short_name))</span>
+                                    </h5>
+                                    <h5 class="handpointer" ng-dblclick="data_get(j.name)"><span class="glyphicon glyphicon-folder-open" aria-hidden="true" ng-if="!j.is_file">&nbsp;((j.short_name))</ span></h5>
+                                </div>
+                                <div class="col-md-2 column">
+                                    <h5 ng-if="j.is_file">&nbsp;&nbsp;&nbsp;&nbsp;文件</h5>
+                                    <h5 ng-if="!j.is_file">&nbsp;&nbsp;&nbsp;&nbsp;目录</h5>
+                                </div>
+                                <div class="col-md-3 column">
+                                    <div class="col-md-2 column"></div>
+                                    <h5>&nbsp;&nbsp;&nbsp;&nbsp;((j.size))</h5>
+                                </div>
+                                <div class="col-md-2 column">
+                                    <div class="col-md-3 column"></div>
+                                    <h5>&nbsp;&nbsp;&nbsp;&nbsp;((j.time_of_last_modification))</h5>
+                                </div>
+                                <div class="col-md-2 column">
+                                    <div class="col-md-3 column"></div>
+
+                                    
+                                    
+                                    <div class="modal fade" id="Modelexcute((j.cut_name))" tabindex="-1" role="dialog" aria-labelledby="ModalLabeldelete" aria-hidden="true">
+                                         <div class="modal-dialog modal-dialog modal-lg">
+                                             <div class="modal-content">
+                                                 <div class="modal-header">
+                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                     <h4 class="modal-title" id="ModalLabeldelete">提示：执行数据库务必小心，只能执行一次(如备份数据库选项可点击，请务必点击)</h4>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                    <label class="col-md-12 control-label">提示:</label>
+                                                    <textarea class="form-control" rows="12" style="width:800px">((find_difftext))((find_droptext.text))</textarea>
+                                                    <br/>
+                                                 </div>
+
+                                                 <div class="modal-footer">
+                                                    <br/>
+                                                    <button type="button" class="btn btn-success ((show_backup))" ng-click="backup_db(now_name)">备份数据库</button>
+                                                    <button type="button" class="btn btn-primary ((show_execute))" ng-click="execute_sql(now_name)">确认执行</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                                                 </div>
+                                             </div><!-- /.modal-content -->
+                                         </div><!-- /.modal-dialog -->
+                                     </div><!-- /.modal -->
+
+                                    
+
+
+
+                                    <button class="btn btn-primary" ng-click="find_drop(j.name,j.short_name.j.cut_name,i.pro_name)" aria-hidden="true" data-toggle="modal" data-target="#Modelexcute((j.cut_name))"><span class="glyphiconglyphicon-trash handpointer">执行</span></button>
+                                    <button class="btn btn-danger" ng-click="now_set_name(j.name,j.short_name)" aria-hidden="true" data-toggle="modal" data-target="#Modeldelete((j.cut_name))"><span class="glyphiconglyphicon-trash handpointer">删除</span></button>
+                                </div>
+                                <br/>
+                                <hr/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <br/>
+
+                <!--
+                    <button class="btn btn-info" ng-click="toggle_branch(i.pro_name, branches[i.pro_name+'show'])">显示所有版本: </button> 
+                    <button class="btn btn-info" ng-click="git_pull(i.pro_ansi_codedir)">更新版本显示(并不切换)</button>
+                    <li class="list-group-item list-group-item-success" ng-hide="branches[i.pro_name+'show']" ng-repeat="i in branches[i.pro_name]|filter:query">((i))</li>
+                -->
+            </div>
+        </accordion-group>
+  </accordion>
+</div>

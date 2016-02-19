@@ -1,0 +1,20 @@
+<div ng-controller='welcome_page_ctrl'>  
+    <div class="page-header">
+        <div class="col-md-3 column"></div>
+        <h2 ng-if="project_group"><span class="label label-info">欢迎来到项目((project_group.pro_group_name))</span><span class="label label-warning">千万不要弄错项目</span></h2>
+        <div class="col-md-1 column" ng-if="!project_group"></div>
+        <h2 ng-if="!project_group"><span class="label label-info">请在左上角选择项目</span></h2>
+    </div>
+    <div style="height: 340px">
+    <carousel interval="myInterval">
+      <slide ng-repeat="slide in slides" active="slide.active">
+        <img ng-src="((slide.image))" style="margin:auto;">
+        <div class="carousel-caption">
+            <h3><span ng-if="project_group" class="label label-default">项目组：((project_group.pro_group_name))</span></h3>
+            <h3><span ng-if="project_group" class="label label-default">创建于：((project_group.pro_group_created_time))</span></h3>
+            <h3><span class="label label-default">((slide.text))</span></h3>
+        </div>
+      </slide>
+    </carousel>
+  </div>
+</div>

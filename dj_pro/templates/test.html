@@ -1,0 +1,21 @@
+{% extends "normal/base.html" %}
+
+{% load staticfiles %}
+{% block title %}test{% endblock %}
+
+{% block content %}
+{% include "normal/release/navigation.html" %}
+{% include "normal/release/mainpage.html" %}
+{% endblock %}
+
+{% block chosen_js_file %}
+
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Project_Group.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Project_Item.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Project_Var.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Process_Reset.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Log_Save.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/TabsCtrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/backup_code.js' %}"></script>
+{% endblock %}
+                                                                                                                

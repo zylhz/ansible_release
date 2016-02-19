@@ -1,0 +1,77 @@
+<div class="col-md-12 column" ng-controller="release_main">
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span> 主页 </a>
+    </div>
+
+    <div class="btn-group nav navbar-form navbar-left" dropdown>
+        <button type="button" class="btn btn-primary dropdown-toggle">
+            ((project_name)) <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="i in permit_pro_set"><a class="handpointer" ng-click="changeurl(i.id)">((i.pro_group_name))</a></li>
+            <li class="divider"></li>
+            <li><a href="#">返回主页</a></li>
+        </ul>
+    </div>
+
+    <div class="btn-group nav navbar-form navbar-left" dropdown>
+        <button type="button" class="btn btn-primary dropdown-toggle" ng-if="admin_tool">
+            管理员操作 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a class="handpointer" target="_blank" href='/release/project_group_api/'> 添加项目组 </a></li>
+            <li><a class="handpointer" target="_blank" href='/release/project_item_api/'> 添加项目 </a></li>
+            <li><a class="handpointer" target="_blank" href='/release/auth_pro/'> 权限分配 </a></li>
+            <li><a class="handpointer" target="_blank" href='/release/init_env/'> 初始化环境 </a></li>
+            <li class="divider"></li> 
+        </ul>
+    </div>
+    <div class="btn-group nav navbar-form navbar-left" ng-click="url_redirect('/release/upyun')">
+        <a ng-click="url_redirect('/release/upyun')">
+            <button type="button" class="btn btn-primary">
+                又拍上传
+            </button>
+        </a>
+    </div>
+
+        <ul class="nav navbar-nav navbar-right" ng-controller='Log_Check_Ctrl'>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><span> ((loginname))</span><strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class='btn btn-default' ng-click="log_redirect()"> ((log_value)) </a>
+                    </li>
+                    <li class="divider">
+                    </li>
+                    <li>
+                        <a class='btn btn-default' href="/register" target="_blank" ng-if="admin_tool"> register </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="nav navbar-form navbar-right" ng-controller="google_ctrl" >
+            <div class="form-group form-inline">
+                <input type="text" class="form-control" name='q' placeholder="search" ng-model="search"/>
+            </div>
+            <div class="btn-group inline-block">
+                <a href="((googleurl))" target="_blank"><button class="col-sm-8 btn btn-primary"><span>google! </span><span class="glyphicon glyphicon-search"></span></button></a>
+                <button type="button" class="col-sm-2 btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu btn-block">
+                    <li><a href="((stackoverflowurl))" target="_blank"><button class="btn btn-primary btn-block"><span>stackoverflow! </span><span class="glyphicon glyphicon-search"></span></button></a></li>
+                    <li><a href="((searchcodeurl))" target="_blank"><button class="btn btn-primary btn-block"><span>searchcode! </span><span class="glyphicon glyphicon-search"></span></button></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </nav>
+</div>
+
+<!-- need js file:
+js/angular-factory/User.js 
+js/angular-controller/google_ctrl.js
+js/angular-controller/log_cookie.js 
+js/angular-controller/checkuser_cookie.js 
+-->

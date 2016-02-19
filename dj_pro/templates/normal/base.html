@@ -1,0 +1,66 @@
+{% load staticfiles %}
+<!DOCTYPE html><html lang="en">
+    <head>  
+        <meta charset="utf-8">
+        <link rel="shortcut icon" type="image/x-icon" href="../../static/images/favicon.ico"/>
+        <title>{% block title %}{% endblock %}</title> 
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <meta name="description" content="">  
+        <meta name="author" content="">
+        <!--append watch to the browser URL, then refresh the page. -->
+        <link href="{% static 'css/libs/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/libs/powerange.css' %}" rel="stylesheet">
+        <link href="{% static 'css/libs/checkboxes.css' %}" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">  
+        <link rel="stylesheet" href="{% static 'css/powermain.css' %}" />
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->  
+        <!--[if lt IE 9]>    
+        <script src="js/html5shiv.js"></script>  
+        <![endif]-->  
+        <!-- Fav and touch icons -->  
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">  
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">  
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">  
+        <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">  
+    </head>    
+    <body id="addroute">
+        <div class="container-fluid">
+            <div class="col-md-12 column">
+                <br />
+                <hr />
+            </div>
+            {% block content %}{% endblock %}
+        </div>
+    
+    <!-- put here load faster -->
+    <!-- here is the main js file that should be load -->
+    <script src="{% static 'less/less.js' %}" type="text/javascript"></script>
+    <script type="text/javascript" src="{% static 'js/libs/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular/angular.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular/angular-resource.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular/angular-cookies.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular/angular-md5.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/bootstrap/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular/angular-base64.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/bootstrap/ui-bootstrap-tpls-0.11.2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular/angular-soundmanager2-change.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular/angular-ui-router.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular/ng-file-upload-shim.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libs/angular/ng-file-upload.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/angular-factory/short-main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/angular-factory/User.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/angular-factory/MinSecFilter.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/angular-controller/Sound2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/angular-factory/timer.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/angular-controller/TimeController.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/angular-controller/google_ctrl.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/angular-controller/log_cookie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/angular-controller/checkuser_cookie.js' %}"></script>
+
+    <!-- here is the other page's js -->
+    {% block chosen_js_file %}{% endblock %}
+    </body>
+</html>

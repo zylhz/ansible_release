@@ -1,0 +1,13 @@
+{% extends "normal/base.html" %}
+{% load staticfiles %}
+{% block title %}welcome register!{% endblock %}
+
+{% block content %}
+{% include "normal/navigation.html" %}
+{% include "normal/user_register.html" %}
+{% include "normal/time.html" %}
+{% endblock %}
+
+{% block chosen_js_file %}
+<script type="text/javascript" src="{% static 'js/angular-controller/user_ctrl.js' %}"></script>
+{% endblock %}

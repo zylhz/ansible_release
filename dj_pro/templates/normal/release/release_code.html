@@ -1,0 +1,186 @@
+<div ng-controller='pull_code_ctrl'>
+    
+    <div class="alert alert-warning" role="alert">
+        <div class="col-md-3 column">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    项目列表 </span>
+        </div>
+        <div class="col-md-3 column">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    当前版本 </span>
+        </div>
+        <div class="col-md-3 column">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    操作 </span>
+        </div>
+        <div class="col-md-3 column">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    所花时长(秒) </span>
+        </div>
+        <br/>
+    </div>
+    <div class="col-md-12 column"></div>
+    <div class="col-md-12 column">
+        <div class="col-md-3 column">
+            <!--正式服请打开此处，关闭下面一句
+                <input type="checkbox" class="css-checkbox" name="gobackup" id='gobackup' checked="checked" value="exist">
+            -->
+            <input type="checkbox" class="css-checkbox" name="gobackup" id='gobackup' value="exist">
+            <label for="gobackup" class="css-label"><small>在发布前到远程机器备份所有程序</small></label>
+        </div>
+    </div>
+    <div class="col-md-12 column"></div>
+    <div class="col-md-12 column column alert alert-info" role="alert">
+        <div ng-repeat="i in items_container">
+            <div class="col-md-3 column">
+                <input type="checkbox" class="css-checkbox" ng-model="i.Selected" id='selected ((i.pro_name))' value="((i.pro_name))">
+                <label for="selected ((i.pro_name))" class="css-label"><small>((i.pro_name))</small></label>
+            </div>
+            <div class="col-md-3 column">
+	        <div class="col-md-3 column"></div>
+                <span ng-init="search_branch(i)">((nowbranch[i.pro_name]))</span>
+            </div>
+            <div class="col-md-3 column">
+                <div class="col-md-2 column"></div>
+                <button class="btn btn-primary ((pull_show))" ng-click="branch_release(i)">发布代码</button>
+            </div>
+            <div class="col-md-3 column">
+                <div class="col-md-3 column"></div>
+                <span ng-show="cost_time[i.pro_name]">耗时 ((cost_time[i.pro_name]))</span>
+            </div>
+        <br/>
+        <hr/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="col-md-12 column">
+        <div class="col-md-3 column">
+            <input type="checkbox" id="selectall" class="css-checkbox" ng-model="selectedAll" ng-click="checkAll()" />
+            <label for="selectall" class="css-label">全选/全部取消</span>
+        </div>
+        
+        <div class="col-md-3 column">
+
+        <!--       
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="col-md-12 column" ng-repeat="i in complex_logs">
+                            <div class="col-md-2 column">
+                                <textarea rows="15"  class="form-control" readonly="readonly">操作人：((i.username))   操作时间：((i.log_time))</textarea>
+                            </div>
+                            <div class="col-md-10 column">
+                                <textarea rows="15"  class="form-control" readonly="readonly">((i.log_complex))</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 column"></div>                                                                                                         
+                                                                                                                                     
+            <button class="btn btn-primary ((pull_show))" ng-click="log_read('release')" data-toggle="modal" data-target=".bs-example-modal-lg">查看所有日志</button>
+        -->
+        </div>
+
+        <div class="col-md-3 column">
+            <div class="col-md-2 column"></div>
+            <button class="btn btn-primary ((pull_show))" ng-click="release_selected()">批量发布</button>
+        </div>
+        <div class="col-md-3 column">
+            <div class="col-md-3 column"></div>
+            <span ng-show="all_cost_time">共耗时 ((all_cost_time))</span>
+        </div>
+    </div>
+        <div class="col-md-12 column" ng-show="wait_flag">
+        <span>((wait_msg))</span>
+        <img ng-src="../../static/images/loading3.gif"  alt="" />
+    </div>
+
+    <div class="col-md-12 column alert alert-warning" role="alert">
+        <h5><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>FAQ：如要备份代码，请勾选上(在发布前到远程机器备份所有程序),测试服默认不开启，若要默认开启请联系管理员修改(templates/normal/release/release_code.html),按该文件的注释进行修改。</h5>
+    </div>
+    <div class="col-md-12 column">   
+    	<span>返回结果:</span>
+	<br/>
+	<textarea rows="5"  class="form-control" readonly="readonly">((simple_log))</textarea>
+    </div>
+    <br/>
+    <br/>
+    <div class="col-md-12 column">
+        <div class="col-md-6 column">
+            <span>返回细节:</span>
+            <br/>
+            <textarea rows="10"  class="form-control" readonly="readonly">((complex_log))</textarea>
+        <br/>
+        </div>
+        <div class="col-md-6 column">
+            <span>错误日志:</span>
+            <br/>
+            <textarea rows="10"  class="form-control" readonly="readonly">((error_log))</textarea>
+        <br/>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

@@ -1,0 +1,56 @@
+<div ng-controller="PaginationCtrl">
+    <div class="col-md-12">
+        <form class="form-inline">
+            <div class="form-group">
+                <label>关键字搜索:</label> 
+                <input ng-model="keyword" class="form-control" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-1"></div>
+                <label>分类查询:</label> 
+                    <select class="form-control" ng-change="changecata()" ng-options="i for i in catagorys" ng-model="catagory"> 
+                        <option value="" class='btn btn-primary'>按何种方式分类</option>
+                    </select>
+            </div>
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>操作者</th>
+                <th><div class="col-md-4"></div>日志内容</th>
+                <th>日志时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in items | offset: currentPage*itemsPerPage | limitTo: itemsPerPage|filter: keyword">
+                <td>((item.id))</td>
+                <td>((item.username))</td>
+                <td>
+                    <div class="col-md-10 column">
+                        <textarea rows="10"  class="form-control" readonly="readonly">((item.log_complex))</textarea>
+                    </div>
+                </td>
+                <td>((item.log_time))</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <td colspan="3">
+                <nav>
+                    <ul class="pagination">
+                        <li ng-class="prevPageDisabled()">
+                            <a href ng-click="prevPage()">« Prev</a>
+                        </li>
+                        <li ng-repeat="n in range()" ng-if="n >= 0" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                            <a href="#">((n+1))</a>
+                        </li>
+                        <li ng-class="nextPageDisabled()">
+                            <a href ng-click="nextPage()">Next »</a>
+                        </li>
+                    </ul>
+                </nav>
+            </td>
+        </tfoot>
+    </table>
+</div>

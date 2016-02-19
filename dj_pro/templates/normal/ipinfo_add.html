@@ -1,0 +1,399 @@
+<!--
+<div ng-controller="ipinfo_add_ctrl" class="col-md-12 column">
+    <ul>
+        <li ng-repeat='ip_info in ip_infos'>((ip_info))</li>
+    </ul>
+</div>
+-->
+<div class="col-md-12" ng-controller="ipinfo_add_ctrl">
+    <form class='form-horizontal'>
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">机器名称:</label>
+            <div class="col-md-6">
+                <input type="text" name="machine_name" class="form-control" id="" ng-init="IpData.machine_name=((ip_detail.machine_name))" placeholder="((ip_detail.machine_name))" ng-model="IpData.machine_name" />
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">机器类型:</label>
+            <div class="col-md-6">
+                <input type="text" name="machine_type" class="form-control" id="" ng-init="IpData.machine_type=((ip_detail.machine_type))" placeholder="((ip_detail.machine_type))" ng-model="IpData.machine_type" />
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">外网地址:</label>
+            <div class="col-md-6">
+                <input type="text" name="outerip" class="form-control" id=""  ng-init="IpData.outerip=((ip_detail.outerip))" placeholder="((ip_detail.outerip))" ng-model="IpData.outerip" />
+            </div>
+            <div class="col-md-2">
+                <p class="bg-info text-danger">((outer_msg))</p>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">内网地址:</label>
+            <div class="col-md-6">
+                <input type="text" name="innerip" class="form-control" id="" ng-init="IpData.innerip=((ip_detail.innerip))" placeholder="((ip_detail.innerip))" ng-model="IpData.innerip"/>
+            </div>
+            <div class="col-md-2">
+                <p class="bg-info text-danger">((inner_msg))</p>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">外网网卡Mac地址:</label>
+            <div class="col-md-6">
+                <input type="text" name="Eth0Mac" class="form-control" id="" ng-init="IpData.Eth0Mac=((ip_detail.Eth0Mac))" placeholder="((ip_detail.Eth0Mac))" ng-model="IpData.Eth0Mac"/>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">内网网卡Mac地址:</label>
+            <div class="col-md-6">
+                <input type="text" name="Eth1Mac" class="form-control" id="" ng-init="IpData.Eth1Mac=((ip_detail.Eth1Mac))" placeholder="((ip_detail.Eth1Mac))" ng-model="IpData.Eth1Mac"/>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">cpu个数:</label>
+            <div class="col-md-6">
+                <input type="text" name="cpu" class="form-control" id="" ng-init="IpData.cpu=((ip_detail.cpu))" placeholder="((ip_detail.cpu))" ng-model="IpData.cpu"/>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">内存大小:</label>
+            <div class="col-md-6">
+                <input type="text" name="memory" class="form-control" id="" ng-init="IpData.memory=((ip_detail.memory))" placeholder="((ip_detail.memory))" ng-model="IpData.memory"/>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">磁盘容量:</label>
+            <div class="col-md-6">
+                <input type="text" name="disk_large" class="form-control" id="" ng-init="IpData.disk_large=((ip_detail.disk_large))" placeholder="((ip_detail.disk_large))" ng-model="IpData.disk_large"/>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">带宽:</label>
+            <div class="col-md-6">
+                <input type="text" name="bandwidth" class="form-control" id="" ng-init="IpData.bandwidth=((ip_detail.bandwidth))" placeholder="((ip_detail.bandwidth))" ng-model="IpData.bandwidth"/>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">过期时间:</label>
+            <div ng-controller="DatepickerDemoCtrl" class="col-md-6">
+                <div class="row">
+                    <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-init="IpData.expire_time=((ip_detail.expire_time))" placeholder="((ip_detail.expire_time))" ng-model="IpData.expire_time" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">宿主机ip:</label>
+            <div class="col-md-6">
+                <input type="text" name="master_machine" class="form-control" id="" ng-init="IpData.master_machine=((ip_detail.master_machine))" placeholder="((ip_detail.master_machine))" ng-model="IpData.master_machine"/>
+            </div>
+            <div class="col-md-2">
+                <p class="bg-info text-danger">((master_msg))</p>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="col-md-6">
+            <fieldset disabled>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">记录时间:</label>
+                    <div class="col-md-6">
+                        <input type="text" name="register_time" class="form-control" id="" ng-init="IpData.register_time=((IpData.register_time))"  placeholder="((IpData.register_time))" ng-model="IpData.register_time"/>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <br />
+        <br />
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">选择所在机房:</label>
+            <div class="col-md-4">
+                <select class="form-control" ng-change="" ng-options="[i.firm,i.district] for i in places" ng-model="IpData.place"> 
+                    <option value="" class='btn btn-primary'>((place_detail))</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <p class="bg-info text-danger">((place_msg))</p>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group col-md-6">
+            <label class="col-md-4 control-label">备注:</label>
+            <div class="col-md-8">
+                <textarea type="text" name="note" class="form-control" id="" ng-init="IpData.note=((ip_detail.note))" rows="3" placeholder="((ip_detail.note))" ng-model="IpData.note"></textarea>
+            </div>
+        </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>确认提交数据,数据将被修改</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="ipinfo_post()">确认</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+
+        <div class="row col-md-12">
+            <br />
+            <button type="submit" class="btn btn btn-primary col-md-offset-5" data-toggle="modal" data-target="#myModal">提交</button>
+        </div>
+
+    </form>
+    <div>
+
+
+    <div ng-controller="ipinfo_add_project_ctrl">
+
+    <div class="col-md-12 column">
+        <table id="table-project-basic" class="success" data-row-style="rowStyle"></table>
+    </div>
+
+
+
+        <!-- Modal -->
+    <div class="modal fade" id="Modeladdpro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                 
+
+       
+                        <div class="col-md-12">
+                            <form class='form-horizontal'>
+                                <div class="form-group col-md-6">
+                                    <label class="col-md-4 control-label">项目负责人:</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="master" class="form-control" id="" value="" placeholder="" ng-model="Project_Data.master" />
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-md-4 control-label">项目名称:</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="pro_name" class="form-control" id="" value="" placeholder="" ng-model="Project_Data.pro_name" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="bg-info text-danger">((projectdata_pro))</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-md-4 control-label">项目域名:</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="domain" class="form-control" id="" value="" placeholder="" ng-model="Project_Data.domain" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="bg-info text-danger">((projectdata_domain))</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-md-4 control-label">项目目录:</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="pro_dir" class="form-control" id="" value="" placeholder="" ng-model="Project_Data.pro_dir" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="project_info_post()">确认</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+    </div>
+
+
+
+
+
+    <div class="row col-md-12" ng-show='((ip_detail_id))'>
+        <br />
+        <button type="submit" class="btn btn btn-primary col-md-offset-5" data-toggle="modal" data-target="#Modeladdpro">添加项目</button>
+    </div>
+    </div>
+
+
+    <div ng-controller="ipinfo_add_project_ctrl">
+
+    <div class="col-md-12 column">
+        <table id="table-Login-basic" class="success" data-row-style="rowStyle"></table>
+    </div>
+
+        <!-- Modal -->
+    <div class="modal fade" id="Modeladdpass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                 
+
+       
+                        <div class="col-md-12">
+                            <form class='form-horizontal'>
+                                <div class="form-group col-md-6">
+                                    <label class="col-md-4 control-label">用户名:</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="user" class="form-control" id="" value="" placeholder="" ng-model="Sys_Data.user" />
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-md-4 control-label">密码:</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="password" class="form-control" id="" value="" placeholder="" ng-model="Sys_Data.password" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="pass_info_post()">确认</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+    </div>
+
+
+
+
+
+    <div class="row col-md-12" ng-show='((ip_detail_id))'>
+        <br />
+        <button type="submit" class="btn btn btn-primary col-md-offset-5" data-toggle="modal" data-target="#Modeladdpass">添加用户密码</button>
+    </div>
+
+
+    </div>
+
+    <div ng-controller="ipinfo_add_database_ctrl">
+
+    <div class="col-md-12 column">
+        <table id="table-database-basic" class="success" data-row-style="rowStyle"></table>
+    </div>
+
+        <!-- Modal -->
+    <div class="modal fade" id="Modeladddatabase" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                 
+
+       
+                        <div class="col-md-12">
+                            <form class='form-horizontal'>
+                                <div class="form-group col-md-10">
+                                    <label class="col-md-4 control-label">选择数据库地址:</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" ng-change="" ng-options="i.database_addr for i in database_addrs" ng-model="InfoData.database_addr"> 
+                                            <option value="" class='btn btn-primary'>((database_addr))</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="bg-info text-danger">((database_addr_msg))</p>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <div class="form-group col-md-10">
+                                    <label class="col-md-4 control-label">选择数据库信息:</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" ng-change="" ng-options="[i.data_user,i.data_pass] for i in database_conns" ng-model="InfoData.database_conn"> 
+                                            <option value="" class='btn btn-primary'>((database_conn))</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="bg-info text-danger">((database_conn_msg))</p>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <div class="form-group col-md-10">
+                                    <label class="col-md-4 control-label">数据库名称:</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="password" class="form-control" id="" value="" placeholder="" ng-model="InfoData.database_name" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="bg-info text-danger">((database_name_msg))</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="data_database_post()">确认</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+    </div>
+
+
+
+
+
+    <div class="row col-md-12" ng-show='((ip_detail_id))'>
+        <br />
+        <button type="submit" class="btn btn btn-primary col-md-offset-5" data-toggle="modal" data-target="#Modeladddatabase">添加数据库信息</button>
+    </div>
+
+
+    </div>
+    <div ng-controller="log_save_ctrl">
+
+        <div class="col-md-12 column">
+            <table id="table-log-basic" class="success"></table>
+        </div>
+    </div>
+
+</div>

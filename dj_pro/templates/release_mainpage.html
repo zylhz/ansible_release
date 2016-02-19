@@ -1,0 +1,31 @@
+{% extends "normal/base.html" %}
+
+{% load staticfiles %}
+{% block title %}自动化发布平台{% endblock %}
+
+{% block content %}
+{% include "normal/release/navigation.html" %}
+{% include "normal/release/mainpage.html" %}
+{% endblock %}
+
+{% block chosen_js_file %}
+<script type="text/javascript" src="{% static 'js/angular-controller/release/upload.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Project_Group.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/auth_control/Member.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/auth_control/Family.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Project_Item.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Project_Var.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Process_Reset.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Log_Save.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/TabsCtrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/main_page_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/Log_Check.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/welcome_page_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/search_branch_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/pull_code_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/release_code_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/database_update_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/process_reset_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/log_view_ctrl.js' %}"></script>
+{% endblock %}
+                                                                                                                

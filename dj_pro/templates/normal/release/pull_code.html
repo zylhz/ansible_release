@@ -1,0 +1,191 @@
+<div ng-controller='pull_code_ctrl'>
+    <div class="alert alert-warning" role="alert">    
+        <div class="col-md-3 column">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    项目列表[当前版本] </span>
+        </div>
+        <div class="col-md-3 column">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;    输入版本(不填写则拉取当前版本) </span>
+        </div>
+        <div class="col-md-3 column">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    操作 </span>
+        </div>
+        <div class="col-md-3 column">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    所花时长(秒)</span>
+        </div>
+        <br/>
+    </div>
+    <div class="col-md-12 column"></div>
+	<div class="col-md-12 column alert alert-info" role="alert">
+        <div ng-repeat="i in items_container" ng-init="search_branch(i)">
+            <div class="col-md-3 column">
+                <input type="checkbox" class="css-checkbox" ng-model="i.Selected" id='selected ((i.pro_name))' value="((i.pro_name))">
+                <label for="selected ((i.pro_name))" class="css-label"><small>((i.pro_name))[ ((nowbranch[i.pro_name])) ]</small></label>
+            </div>
+            <div class="col-md-3 column">
+                <input class="form-control" ng-model='version' ng-change="insertversion(i,version)">
+            </div>
+            <div class="col-md-3 column">
+                <div class="col-md-2 column"></div>
+                <button class="btn btn-primary ((pull_show))" ng-if="((version))" ng-click="pull_branch(i,version)">拉取((version))版本代码</button>
+                <button class="btn btn-primary ((pull_show))" ng-if="!((version))" ng-click="pull_branch(i,nowbranch[i.pro_name])">拉取当前版本代码</button>
+            </div>
+            <div class="col-md-3 column">
+                <div class="col-md-3 column"></div>
+                <span ng-show="cost_time[i.pro_name]">耗时 ((cost_time[i.pro_name]))</span>
+            </div>
+	    <br/>
+        <hr/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="col-md-12 column">
+        <div class="col-md-3 column">
+            <input type="checkbox"  id="selectall" class="css-checkbox" ng-model="selectedAll" ng-click="checkAll()" />
+            <label for="selectall" class="css-label">全选/全部取消</label>
+        </div>
+        <div class="col-md-3 column">
+
+        <!--
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="col-md-12 column" ng-repeat="i in complex_logs">
+                            <div class="col-md-2 column">
+                                <textarea rows="15"  class="form-control" readonly="readonly">操作人：((i.username))   操作时间：((i.log_time))</textarea>
+                            </div>
+                            <div class="col-md-10 column">
+                                <textarea rows="15"  class="form-control" readonly="readonly">((i.log_complex))</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-2 column"></div>
+            <button class="btn btn-primary ((pull_show))" ng-click="log_read('pull')" data-toggle="modal" data-target=".bs-example-modal-lg">查看所有日志</button>
+            -->
+        </div>
+        <div class="col-md-3 column">
+            <div class="col-md-2 column"></div>
+            <!--
+            <button class="btn btn-primary ((pull_show))" ng-click="backup_selected()">批量备份</button>
+            -->
+            <button class="btn btn-primary ((pull_show))" ng-click="pull_selected()">批量拉取</button>
+        </div>
+        <div class="col-md-3 column">
+            <div class="col-md-3 column"></div>
+            <span ng-show="all_cost_time">共耗时 ((all_cost_time))</span>
+        </div>
+    </div>
+    <div class="col-md-12 column" ng-show="wait_flag">
+	<span>((wait_msg))</span>
+        <img ng-src="../../static/images/loading3.gif"  alt="" />
+    </div>
+    <div class="col-md-12 column alert alert-warning" role="alert">
+        <h5><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>FAQ：如碰到拉取失败，请联系管理员，最简单的办法，就是移除项目目录，重新拉取。</h5>    
+    </div>
+    <div class="col-md-12 column">
+	<span>返回结果:</span>
+	<br/>
+	<textarea rows="5"  class="form-control" readonly="readonly">((simple_log))</textarea>
+    </div>
+    <br/>
+    <br/>
+    <div class="col-md-12 column">
+        <div class="col-md-6 column">
+            <span>返回细节:</span>
+            <br/>
+            <textarea rows="10"  class="form-control" readonly="readonly">((complex_log))</textarea>
+        <br/>
+        </div>
+        <div class="col-md-6 column">
+            <span>错误日志:</span>
+            <br/>
+            <textarea rows="10"  class="form-control" readonly="readonly">((error_log))</textarea>
+        <br/>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

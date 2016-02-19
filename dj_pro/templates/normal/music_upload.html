@@ -1,0 +1,15 @@
+<div class="row" ng-controller="music_ctrl">
+    <input type="file" file-model="music_file"/>
+    <input type="file" file-model="music_img"/>
+    <button ng-click="uploadFile()">upload me</button>
+    <p ng-show='loadinfo'>((loadinfo))</p>
+    <p ng-show='$root.loadinfo'>(($root.loadinfo))</p>
+</div>
+
+
+
+
+<!-- need js file:
+js/angular-factory/Music.js
+js/angular-controller/music_ctrl.js
+-->

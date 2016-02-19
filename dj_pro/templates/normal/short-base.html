@@ -1,0 +1,16 @@
+{% load staticfiles %}
+    <div class="container-fluid">
+        <div class="col-md-12 column" id="RouteApp">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    
+    <!-- put here load faster -->
+    <!-- here is the main js file that should be load -->
+
+    <script type="text/javascript" src="{% static 'js/angular-factory/short-main.js' %}"></script>
+
+    <!-- here is the other page's js -->
+    {% block chosen_js_file %}{% endblock %}
+    </body>
+</html>

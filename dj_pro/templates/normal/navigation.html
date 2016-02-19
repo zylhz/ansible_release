@@ -1,0 +1,59 @@
+<div class="col-md-12 column">
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/ipinfo/ip_info_main"><span class="glyphicon glyphicon-home"></span> 服务器总概况 </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li class="active">
+                <a href="/ipinfo/ip_info_add"> 服务器添加 </a>
+            </li>
+            <li class="active">
+                <a href="/ipinfo/ip_add_place"> 服务商添加 </a>
+            </li>
+             <li class="active">
+                  <a href="#"> + </a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right" ng-controller='CookieCtrl'>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><span> ((loginname))</span><strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class='btn btn-default' ng-click="log_action()"> ((log_value)) </a>
+                    </li>
+                    <li class="divider">
+                    </li>
+                    <li>
+                        <a class='btn btn-default' href="/register"> register </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="nav navbar-form navbar-right" ng-controller="google_ctrl" >
+            <div class="form-group form-inline">
+                <input type="text" class="form-control" name='q' placeholder="search" ng-model="search"/>
+            </div>
+            <div class="btn-group inline-block">
+                <a href="((googleurl))" target="_blank"><button class="col-sm-8 btn btn-primary"><span>google! </span><span class="glyphicon glyphicon-search"></span></button></a>
+                <button type="button" class="col-sm-2 btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu btn-block">
+                    <li><a href="((stackoverflowurl))" target="_blank"><button class="btn btn-primary btn-block"><span>stackoverflow! </span><span class="glyphicon glyphicon-search"></span></button></a></li>
+                    <li><a href="((searchcodeurl))" target="_blank"><button class="btn btn-primary btn-block"><span>searchcode! </span><span class="glyphicon glyphicon-search"></span></button></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </nav>
+</div>
+
+<!-- need js file:
+js/angular-factory/User.js 
+js/angular-controller/google_ctrl.js
+js/angular-controller/log_cookie.js 
+js/angular-controller/checkuser_cookie.js 
+-->

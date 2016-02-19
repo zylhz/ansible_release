@@ -1,0 +1,22 @@
+{% extends "normal/base.html" %}
+
+{% load staticfiles %}
+{% block title %}发布权限管理{% endblock %}
+
+{% block content %}
+{% include "normal/release/navigation.html" %}
+{% include "normal/release/upyun.html" %}
+{% endblock %}
+
+{% block chosen_js_file %}
+
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Project_Group.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/release/Project_Item.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/auth_control/Family.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/auth_control/Group.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/auth_control/Member.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/main_page_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/upyun_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/release/Log_Check.js' %}"></script>
+{% endblock %}
+                                                                                                                

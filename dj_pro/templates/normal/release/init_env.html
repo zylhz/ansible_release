@@ -1,0 +1,56 @@
+<div ng-controller="init_env_control">
+    <div class="row col-sm-12 column">
+        <div seek-track class="slider progress">
+            <div  class="slider-bar progress-bar" role="progressbar" style="height:18px;width:((progress))%;">
+                <span>((progress|number:0))% </span>
+            </div>
+        </div>
+        <div class="col-md-12 column alert alert-info" role="alert" ng-show="project_log">
+            <p>((project_log))</p>
+        </div>
+        <div class="col-md-12 column">
+            <div class="col-md-3 column">
+                <label>初始化系统ip：(每行一个ip，部署前请test)</label>
+            </div>
+            <div class="col-md-3 column">
+                <textarea class="form-control" ng-model='init_ip' rows="6"></textarea>
+            </div>
+        </div>
+        <div class="col-md-12 column">
+            <br/>
+            <br/>
+        </div>
+        <div ng-init="find_items()" class="col-md-12 column"> 
+            <div ng-repeat="i in yml_set">
+                <div class="col-md-3 column selected">                                                          
+                    <input type="checkbox" class="css-checkbox" ng-model="i.Selected" id='selected ((i.item))' value="((i.item))">                                                                
+                    <label for="selected ((i.item))" class="css-label"><small>((i.item))</small></label>                                                                                     
+                </div>                                                                                 
+                <div class="col-md-3 column">                                                          
+                    <div class="col-md-2 column"></div>                                                
+                    <button class="btn btn-primary ((pull_show))" ng-click="excute_single(i)">安装</button>                                                        
+                </div>                                                                                 
+                <div class="col-md-3 column">                                                          
+                    <div class="col-md-3 column"></div>                                                
+                    <span ng-show="cost_time[i.pro_name]">耗时 ((cost_time[i.pro_name]))</span>        
+                </div>                                                                                 
+                <br/>                                                                                      
+                <hr/>                                                                                      
+            </div>
+            <div class="col-md-12 column">                                                               
+                <div class="col-md-3 column">                                                            
+                    <input type="checkbox" id="selectall" class="css-checkbox" ng-model="selectedAll" ng-click="checkAll()" />                                                                            
+                    <label for="selectall" class="css-label">全选/全部取消</span>                        
+                </div> 
+                <div class="col-md-3 column">                                                             
+                    <div class="col-md-2 column"></div>                                                   
+                    <button class="btn btn-primary ((pull_show))" ng-click="excute_selected()">批量安装</button>                                                                                           
+                </div>                                                                                    
+                <div class="col-md-3 column">                                                             
+                    <div class="col-md-3 column"></div>                                                   
+                    <span ng-show="all_cost_time">共耗时 ((all_cost_time))</span>                         
+                </div>                                                                                    
+            </div>                                                                                   
+        </div>
+    </div>
+</div>

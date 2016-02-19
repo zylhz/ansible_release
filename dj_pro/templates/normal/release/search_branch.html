@@ -1,0 +1,24 @@
+<div ng-controller='search_branch_ctrl'>  
+    <label class="checkbox">
+    </label>
+    <accordion close-others="oneAtATime">
+        <accordion-group ng-repeat="i in items_list" is-open="status.isItemOpen[$index]" ng-init="search_branch(i)">
+            <accordion-heading> 
+            <h5><span class="handpointer">项目名： ((i.pro_name))  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   当前版本: ((nowbranch[i.pro_name])) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 点击我打开查看所有版本</span><i class="pull-right glyphicon handpointer" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></h5>
+            </accordion-heading>
+            <ul class="list-group">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>搜索版本: </label> 
+                        <input class="form-control" ng-model="query" >
+                        <!-- <button class="btn btn-primary" ng-click="change_branch(query)">切换</button> -->
+                    </div>
+                </form>
+                <br/>
+                <button class="btn btn-info" ng-click="toggle_branch(i.pro_name, branches[i.pro_name+'show'])">显示所有版本: </button> 
+                <button class="btn btn-info" ng-click="git_pull(i.pro_ansi_codedir)">更新版本显示(并不切换)</button>
+                <li class="list-group-item list-group-item-success" ng-hide="branches[i.pro_name+'show']" ng-repeat="i in branches[i.pro_name]|filter:query">((i))</li>
+            </ul>
+        </accordion-group>
+  </accordion>
+</div>

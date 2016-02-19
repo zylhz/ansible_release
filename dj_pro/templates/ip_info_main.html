@@ -1,0 +1,34 @@
+{% extends "normal/base.html" %}
+
+{% load staticfiles %}
+{% block title %}ip_info{% endblock %}
+
+{% block content %}
+{% include "normal/navigation.html" %}
+{% include "normal/ips_info.html" %}
+{% include "normal/time.html" %}
+{% endblock %}
+
+{% block chosen_js_file %}
+<link href="{% static 'css/libs/bootstrap-table.min.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'js/libs/bootstrap/bootstrap-table.min.js' %}"></script>
+<!--table export plugins-->
+<script type="text/javascript" src="{% static 'js/libs/jquery/tableExport.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/libs/jquery/jquery.base64.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/libs/jquery/html2canvas.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/libs/jquery/sprintf.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/libs/jquery/jspdf.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/libs/jquery/base64.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/libs/bootstrap/bootstrap-table-export.min.js' %}"></script>
+<!-- export plugins-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.5.0/locale/bootstrap-table-zh-CN.min.js"></script>-->
+<script type="text/javascript" src="{% static 'js/angular-controller/user_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/Place.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/Ip_Info.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/Project_Info.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/Login_Mode.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-factory/Log_Save.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/ipinfo_add_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/ipinfo_add_place_ctrl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular-controller/ipinfo_main.js' %}"></script>
+{% endblock %}

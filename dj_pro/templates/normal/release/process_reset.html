@@ -1,0 +1,149 @@
+<div ng-controller='pull_code_ctrl'>
+    
+    <div class="alert alert-warning" role="alert">
+        <div class="col-md-3 column">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    项目列表 </span>
+        </div>
+        <div class="col-md-4 column">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    进程重启操作 </span>
+        </div>
+        <div class="col-md-3 column">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    所花时长(秒) </span>
+        </div>
+        <br/>
+    </div>
+    <div class="col-md-12 column"></div>
+	<div class="col-md-12 column column alert alert-info" role="alert" ng-init="process_search_yml(process_directory)">
+        <div ng-repeat="i in yml_set">
+            <div class="col-md-3 column">
+                <input type="checkbox" class="css-checkbox" ng-model="i.Selected" id='selected ((i.name))' value="((i.name))">
+                <label for="selected ((i.name))" class="css-label"><small>((i.name))</small></label>
+            </div>
+            <div class="col-md-4 column">
+                <div class="col-md-2 column"></div>
+                <button class="btn btn-primary ((pull_show))" ng-click="process_reset(i)">重启进程</button>
+            </div>
+            <div class="col-md-3 column">
+                <div class="col-md-3 column"></div>
+                <span ng-show="cost_time[i.pro_name]">耗时 ((cost_time[i.pro_name]))</span>
+            </div>
+            <br/>
+            <hr/>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="col-md-12 column">
+        <div class="col-md-3 column">
+            <input type="checkbox" id="selectall" class="css-checkbox" ng-model="selectedAll" ng-click="checknameAll()" />
+            <label for="selectall" class="css-label">全选/全部取消</span>
+        </div>
+        <div class="col-md-4 column">
+            <div class="col-md-2 column"></div>
+            <button class="btn btn-primary ((pull_show))" ng-click="process_selected_reset()">批量重启所选进程</button>
+        </div>
+        <div class="col-md-3 column">
+            <div class="col-md-3 column"></div>
+            <span ng-show="all_cost_time">共耗时 ((all_cost_time))</span>
+        </div>
+    </div>
+
+    <div class="col-md-12 column">
+        <br/>
+    </div>
+    <div class="col-md-12 column alert alert-warning" role="alert">
+        <h5><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>FAQ：如要添加重启进程，请联系管理员，让其在管理员操作，添加项目组选项，添加文件夹目录(pro_ansi_process_directory_reset_yml)，并在文件夹下添加命令即可。</h5>
+    </div>
+
+
+    <div class="col-md-12 column" ng-show="wait_flag">
+        <span>((wait_msg))</span>
+        <img ng-src="../../static/images/loading3.gif"  alt="" />
+    </div>
+    <div class="col-md-12 column">
+        <span>返回结果:</span>
+    <br/>
+    <textarea rows="5"  class="form-control" readonly="readonly">((simple_log))</textarea>
+    </div>
+    <br/>
+    <br/>
+    <div class="col-md-12 column">
+        <div class="col-md-6 column">
+            <span>返回细节:</span>
+            <br/>
+            <textarea rows="10"  class="form-control" readonly="readonly">((complex_log))</textarea>
+        <br/>
+        </div>
+        <div class="col-md-6 column">
+            <span>错误日志:</span>
+            <br/>
+            <textarea rows="10"  class="form-control" readonly="readonly">((error_log))</textarea>
+        <br/>
+    </div>
+</div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

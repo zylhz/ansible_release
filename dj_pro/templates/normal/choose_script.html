@@ -1,0 +1,31 @@
+<div class="col-md-12 column">
+    <h3>activity settings:</h3>
+</div>    
+<div ng-controller="game_script_ctrl">
+    <div ng-repeat="a in gamename_uniq" class="col-md-6 column">
+        <button class="btn btn-primary" ng-click="isCollapsed1 = !isCollapsed1">((a))</button>
+        <div collapse="isCollapsed1">
+            <div class="well well-lg" ng-controller="excuted_command_ctrl">
+                <div ng-repeat="b in gamename_uniq_ip" class="col-md-6 column">
+                    <button class="btn btn-info" ng-click="isCollapsed2 = !isCollapsed2" ng-show="has_ip(a,b)">((b))</button>
+                    <div collapse="isCollapsed2">
+                        <form role="form" ng-submit="Excuted_CommandPost()">
+                            <div class="checkbox">
+                                <label ng-repeat="i in game_scripts|filter:{gamename:((a)),access_ip:((b))}"><input type="checkbox" value="(( i.gamename )), (( i.gamescript )),(( i.access_ip ))" name="get_list"> (( i.gamescript ))<br /></label>
+                            </div>
+                            <button type="submit" class="btn btn btn-info ((button_status))">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-12 column">
+                    <p>result:((result))</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- need js file:
+js/angular-factory/Excuted_Command.js 
+js/angular-controller/excuted_command_ctrl.js
+-->

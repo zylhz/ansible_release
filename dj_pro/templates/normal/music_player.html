@@ -1,0 +1,131 @@
+<div class="col-md-12 column">
+    <h3>BGM:</h3>
+</div>    
+<div ng-controller="Sound2_Ctrl" class="col-md-12 column">
+    <sound-manager></sound-manager>
+
+    <div class="col-md-4 column alert alert-info" role="alert">
+    
+        <div class="col-md-11 column">
+            <div ng-controller="user_ctrl" class="col-md-12 column">
+                <div class="col-md-12 column">
+                    <select class="form-control" ng-model="owner" ng-change="ownerchange(owner)" ng-options="i.username for i in users"> 
+                        <option value="" class='btn btn-primary'>改变音乐列表</option>
+                    </select>
+                </div>
+            </div>
+
+            <img ng-src="((currentPlaying.img))" class="img-thumbnail" width="100" height="100">
+            <span class="glyphicon glyphicon-music"></span><span>((currentPlaying.img_title))</span>
+            <br /><span class="glyphicon glyphicon-time"></span><span>(( currentPostion )) / (( currentDuration )) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="glyphicon glyphicon-volume-down"></span><span id="js-display-change">100</span>
+            <br/>
+            <div class="row col-sm-12 column">
+                <div seek-track class="slider progress">
+                    <div  class="slider-bar progress-bar" role="progressbar" style="height:18px;width:((progress))%;">
+                        <span>((progress|number:0))% </span>
+                    </div>
+                    <div  class="slider-bar progress-bar progress-bar-info" role="progressbar" style="height:18px;width:((load-progress))%;">
+                        <span>((load|number:0))% </span>
+                    </div>
+                </div>
+                <div class="example" class="col-md-1 column">
+                    <input type="text" class="js-check-change" />
+                    <br/>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="../static/js/libs/slider/powerange.min.js"></script>
+        <br/>
+        <br/>
+    
+ 
+        <div class="col-md-12">
+            <div class="col-md-3"></div>
+            <span ng-show="isPlaying">播放状态: Playing</span>
+            <span ng-show="!isPlaying">播放状态: Paused</span>
+            <br />
+            <div class="col-md-3"></div>
+            <span prev-track class="handpointer glyphicon glyphicon-step-backward"></span>
+            <span play-music class="handpointer glyphicon glyphicon-play" ng-show="!isPlaying"></span>
+            <span pause-music class="handpointer glyphicon glyphicon-pause" ng-show="isPlaying"></span>
+            <span next-track class="handpointer glyphicon glyphicon-step-forward"></span>
+            <span ng-click="replayone()" class="handpointer glyphicon glyphicon-arrow-right" ng-show="!replay"></span>
+            <span ng-click="replayone()" class="handpointer glyphicon glyphicon-repeat" ng-show="replay"></span>
+            <span ng-click="repeat_toggle()" class="handpointer glyphicon glyphicon-circle-arrow-right" ng-show="!repeat"></span>
+            <span ng-click="repeat_toggle()" class="handpointer glyphicon glyphicon-retweet" ng-show="repeat"></span>
+            <br />
+        </div>
+    <div class="col-md-12 column"><br/></div>
+    <div class="col-md-12 column">
+        <button class="btn btn-primary col-md-12" ng-click="isCollapsed = !isCollapsed">音乐列表 - ((person_num)) 请点击我打开或关闭</button>
+        <div collapse="isCollapsed">
+            <div class="col-md-12 column alert alert-success" role="alert">
+                <div class="col-md-12 column" ng-repeat="song in playlist">
+                    <div class="col-md-12 column">
+                        <img play-from-playlist="song"  ng-src="((song.img))" class="img-thumbnail handpointer" width="70" height="70">
+                        <span ng-if="currentPlaying.id == song.id" class="glyphicon glyphicon-hand-left"></span>
+                        <span remove-from-playlist="song" data-index="(($index))" class="pull-right btn btn btn-warning glyphicon glyphicon-remove"> </span>
+                    </div>
+                    <div class="col-md-12 column">
+                        <button play-from-playlist="song" class="btn btn btn-info"><span class="glyphicon glyphicon-headphones"> ((song.title))</span></button>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+</div>
+
+<!-- need js file:
+js/libs/angular/media-player.js
+js/libs/bootstrap/bootstrap-slider-jquery-comb.js
+js/angular-factory/User.js 
+js/angular-factory/Music.js 
+js/angular-controller/user_ctrl.js  
+js/angular-controller/PlayerController.js 
+js/angular-controller/music_ctrl.js  
+-->
+
+
+
+<div ng-controller="upload" class="col-md-12 column">
+    <h4>非html5网站(非google,firefox等):</h4>
+    <div class="button" ngf-select ngf-change="upload(files)" ngf-multiple="false">Select music File</div>
+    <div class="button" ngf-select ngf-change="upload(files)" ngf-multiple="false">Select image File</div>
+
+    <h4>html5网站(google,firefox等):</h4>
+    <div ngf-drop ngf-select ng-model="mp3file" ng-change="upload(mp3file)" class="drop-box" 
+        ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
+        accept="image/*,application/pdf">音乐文件拖曳至此处</div>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+    <div>也可点击上面</div>
+
+    <div ngf-drop ngf-select ng-model="jpgfile" ng-change="upload(jpgfile)" class="drop-box" 
+        ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
+        accept="image/*,application/pdf">图片文件拖曳至此处</div>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+    <div>也可点击上面</div>
+
+    <h4>上传的文件:</h4>
+    <ul>
+        <li style="font:smaller">((mp3file[0].name))</li>
+        <li style="font:smaller">((jpgfile[0].name))</li>
+    </ul>
+    Upload Log:
+    <pre>((log))</pre>
+    <button class="btn btn-info" ng-click="startupload()">开始上传</button>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+

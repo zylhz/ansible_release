@@ -1,0 +1,25 @@
+<div class="row" ng-controller="LoginCtrl">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form class="form-signin" role="form">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <input type="text" class="form-control" ng-model="username" placeholder="login name" required autofocus>
+                <input type="password" class="form-control" ng-model="password" placeholder="Password" required>
+                <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" ng-click="release_login()">Sign in</button>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+        <p>((message))</p>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+</div>
+
+
+<!-- need js file:
+js/angular-controller/checkuser_cookie.js 
+-->
