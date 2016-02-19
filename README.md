@@ -8,4 +8,4 @@ other pages operations of database,costome,log
 ![log](https://github.com/targetoyes/ansible_release/blob/master/readgif/log.png)
 
 
-																						
+由于README格式的限制，关于此项目的安装，请详细参考Automation-server.docx文档。谢谢
